@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>老师主页</title>
+    <script src="../../jquery-2.1.0.js"></script>
+    <script src="../../tools/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../../tools/bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-inverse">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="/teacher">学生管理</a></li>
+                        <li class="active"><a href="/teacher/appoint">对局预约信息</a></li>
+                        <li class=""><a href="/teacher/publish">对局预约信息发布</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <p class="navbar-text">欢迎 <%= teacherName.USER_NAME %> 老师</p>
+                        </li>
+                        <li><a href="/?exit=exit">注销</a></li>
+                        <li><a href="/">主页</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+    <div class="container">
+        <div class="list-group" style="margin-top:-20px">
+            <% iteamlist.forEach(function(e){ %> <!-- 对从数据库中取出的可预约的项目数组遍历 -->
+            <% var num=0 %>                      <!-- 定义一个变量存储代表某个项目预约的人数 -->
+            <% count.forEach(function(E){%>      <!-- 对预约表的学生数组遍历 -->
+            <% if(e.id==E.pid&&E.state==1){ %>   <!-- 如果学生预约表和已经发布的可预约表以及state==1说明某个项目预约有效下边num+1 -->
+                       <% num+=1  %>
+            <%   }   %>
+            <% }) %>
+            <a href="/teacher/appointlist?id=<%=e.id%>" class="list-group-item"><%=e.comname%><span class="badge" style="font-size:20px;"><%= num %></span></a>
+            <% }) %>
+        </div>
+    </div>
+</body>
+
+</html>

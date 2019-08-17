@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>老师主页</title>
+  <script src="../../jquery-2.1.0.js"></script>
+  <script src="../../tools/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="../../tools/bootstrap-3.3.7-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="./teacher.css">
+</head>
+
+<body>
+  <div class="container">
+    <nav class="navbar navbar-default navbar-inverse">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/teacher">学生管理</a></li>
+            <li class=""><a href="/teacher/appoint">对局预约信息</a></li>
+            <li class=""><a href="/teacher/publish">任务发布</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <p class="navbar-text">欢迎 <%= teacherName %> 老师</p>
+            </li>
+            <li><a href="/">主页</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>
+
+  <div class="container2">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading">学生管理审核</div>
+      <%check.forEach(function(e){%>
+      <div class="panel-body">
+        <dl class="dl-horizontal">
+          <dt>学生姓名</dt>
+          <dd><%=e.USER_NAME%></dd>
+          <dt>学生学号</dt>
+          <dd><%=e.STUDENTID%></dd>
+          <dt>学生班级</dt>
+          <dd><%=e.CLASS%></dd>
+        </dl>
+        <button class="btn btn-default pull-right check-btn" type="submit" data-id="<%=e.ID%>">审核通过，获得预约权限</button>
+      </div>
+      <%})%>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <% mysqlresult.forEach(function(e){ %>
+      <% if(e.statu==1){ %>
+      <div class="col-md-1" style="border: solid 1px black"> <%= e.user_name %> <%= e.studentid %> <%= e.class %></div>
+      <% } %>
+      <% }) %>
+    </div>
+  </div>
+
+  <script>
+    var checkBtn = $('.check-btn');
+    if (checkBtn) {
+      checkBtn.on('click', function () {
+        var id = $(this).attr('data-id');
+        $(this).text = '已审核'
+        check(id);
+      })
+    }
+    var check = function (id) {
+      $.ajax({
+        type: 'get',
+        url: '/teacher/check',
+        data: { id: id },
+        success: function () {
+          location.href = '/teacher'
+        }
+
+      })
+    }
+
+  </script>
+</body>
+
+</html>

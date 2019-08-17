@@ -1,0 +1,56 @@
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #2b3137;
+  position: absolute;
+}
+.container .main {
+  position: relative;
+  top: 100px;
+}
+.container .main .left {
+  color: white;
+}
+.container .main .frame {
+  display: inline-block;
+  width: 410px;
+  height: 450px;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 1%;
+}
+.container .main .frame .login-wrap {
+  width: 360px;
+  height: 80%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.container .main .frame .login-wrap .img {
+  width: 80px;
+  margin: 0 auto;
+}
+.container .main .frame .login-wrap .img img {
+  width: 80px;
+}
+.container .main .frame .login-wrap .form-group {
+  margin-top: 10px;
+}
+.container .main .frame .login-wrap label {
+  color: #756098;
+}
+.container .main .frame .login-wrap button {
+  margin: 20px auto;
+  width: 360px;
+  background-color: #2ebc4f;
+  color: white;
+}

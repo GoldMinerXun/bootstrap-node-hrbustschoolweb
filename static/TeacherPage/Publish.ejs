@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>老师主页</title>
+    <script src="../../jquery-2.1.0.js"></script>
+    <script src="../../tools/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../../tools/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./teacher.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-inverse">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="/teacher">学生管理</a></li>
+                        <li class=""><a href="/teacher/appoint">对局预约信息</a></li>
+                        <li class="active"><a href="/teacher/publish">对局预约信息发布</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <p class="navbar-text">欢迎 <%= teacherName.USER_NAME %> 老师</p>
+                        </li>
+                        <li><a href="/?exit=exit">注销</a></li>
+                        <li><a href="/">主页</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+    <div class="container">
+        <form class="form-horizontal" method="POST" action="/teacher/publish">
+
+            <div class="form-group">
+                <label for="input-title" class="col-sm-2 control-label">对局项目：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input-title" placeholder="如:斗地主" name="title" autocomplete="off">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input-time" class="col-sm-2 control-label">对局时间：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input-time" placeholder="这里请输入时间，如:3月15日10:10分" name="time" aria-describedby="basic-addon3">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input-place" class="col-sm-2 control-label">对局地点：</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="input-place" placeholder="这里请输入地点" name="place">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input-content" class="col-sm-2 control-label">对局描述：</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="input-content" rows="3" placeholder="这里请输入描述" name="content"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">发布</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

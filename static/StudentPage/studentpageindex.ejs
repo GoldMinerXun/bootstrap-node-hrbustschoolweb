@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../../jquery-2.1.0.js"></script>
+    <script src="../../tools/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../../tools/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./stupage.css">
+    <title>学生主页</title>
+</head>
+
+<body>
+
+    <div class="head">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">HOME</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <p class="navbar-text">欢迎 <%= userData.USER_NAME %> 同学</p>
+                        </li>
+                        <li><a id="deal2" href="/?exit=exit">注销</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="left col-md-3">
+                <div class="setting">
+                    <div class="list-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">个人设置</h3>
+                            </div>
+                            <a href="#" class="list-group-item onclick">修改资料</a>
+                            <a href="/student/appointment" class="list-group-item">预约活动</a>
+                            <a href="http://jwzx.hrbust.edu.cn/homepage/index.do" class="list-group-item">教务在线</a>
+                            <!-- <a href="/" class="list-group-item">翻转课堂</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="center col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title" id="center-title"></h3>
+                    </div>
+                    <div class="panel-body" id="center-body">
+                        <form action="/student/modify" method="POST">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">新用户名</label>
+                                <input type="text" class="form-control" id="Name" placeholder="新用户名" name="newname"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">电话号码</label>
+                                <input type="text" class="form-control" id="phone" placeholder="电话号码" name="newphone"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">QQ</label>
+                                <input type="text" class="form-control" id="qq" placeholder="QQ" name="newQQ"
+                                    autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">擅长项目</label>
+                                <input type="text" class="form-control" id="goodAtPro" value=" " placeholder="擅长项目"
+                                    name="SGOOD" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">新密码</label>
+                                <input type="password" class="form-control" id="newPass" placeholder="Password"
+                                    name="newpass" autocomplete="off">
+                            </div>
+                            <div class="form-group" id="confirm-wrap">
+                                <label for="exampleInputPassword1">确认密码</label>
+                                <input type="password" class="form-control" id="confirmPass" placeholder="Password"
+                                    name="confirmpass" autocomplete="off">
+                                <p class="help-block"></p>
+                            </div>
+                            <button type="submit" class="btn btn-default">确认修改</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="right col-md-3">
+                <div class="newcompeteproject">
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">最新发布对局</div>
+                        <!-- List group -->
+                        <ul class="list-group">
+                            <% cpData.forEach(function(e){ %>
+                            <li class="list-group-item"><a href="/student/appointment"><%=e.COMNAME%></a>
+                                <mark><%=e.COMTIME%></mark> </li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var centerTitle = $('#center-title');
+        var centerBody = $('#center-body');
+        var onclick = $('.onclick');
+        centerTitle.html(onclick.html());
+
+
+        $('#confirmPass').blur(function () {
+            var confimPass = $('#confirmPass').val();
+            var np = $('#newPass').val();
+
+            if (confimPass != np) {
+                $('.help-block').html('密码不一致请重新输入');
+                $('#confirm-wrap').addClass('has-error')
+            }
+            else {
+                $('#confirm-wrap').removeClass('has-error')
+                $('.help-block').html('输入的密码一致');
+                // console.log($('#Name').val())
+                modify();
+            }
+        })
+        var modify = function () {
+            
+            var phone = $('#phone').val();
+            var qq = $('#qq').val();
+            var goodAtPro = $('#goodAtPro').val();
+            var confimPass = $('#confirmPass').val();
+            var np = $('#newPass').val();
+            var name = $('#Name').val();
+            post(name, phone, qq, goodAtPro, np)
+        }
+        var post = function (n, p, q, g, np) {
+            $.ajax({
+                type: 'POST',
+                url: '/student/modify',
+                data: {
+                    name: n,
+                    phone: p,
+                    qq: q,
+                    goodAtPro: g,
+                    newPass: np
+                },
+                success: function (e) {
+                    // console.log(n)
+                    if(e=='1'){
+                        console.log($('#Name').val())
+                        alert('修改成功')
+                        location.href='/student';
+                    }
+                }
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>

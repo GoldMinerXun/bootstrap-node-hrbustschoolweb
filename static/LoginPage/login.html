@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../../jquery-2.1.0.js"></script>
+  <script src="../../tools/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="../../tools/bootstrap-3.3.7-dist/css/bootstrap.css">
+  <link rel="stylesheet" href="./login.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="head">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">HOME</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">登陆<span class="sr-only">(current)</span></a></li>
+              <li><a href="/register">注册</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </div>
+    <div class="main">
+      <div class="row">
+        <div class="left col-md-4 col-md-offset-2">
+          <div class="page-header">
+            <h1>Hrbust University of Science and Technology </h1>
+            <h1><small>计算机实验中心教学网站</small></h1>
+          </div>
+        </div>
+        <div class="frame ">
+          <div class="login-wrap">
+            <div class="img">
+              <img src="./img/猫.png" alt="">
+            </div>
+            <form class="input" action="/login" method="POST" >
+              <div class="form-group">
+                <label for="exampleInputEmail1">登录名</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="学号/教师号" name="NO">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" name="PASS" autocomplete="off">
+              </div>
+              <button type="submit" class="btn btn-default">登陆</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+      
+  </script>
+</body>
+
+</html>

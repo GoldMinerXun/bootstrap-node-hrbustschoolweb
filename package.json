@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "body-parser": "",
+    "circular-json": "^0.5.9",
+    "cookie-parser": "^1.4.4",
+    "crypto": "^1.0.1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "fs": "",
+    "moment": "^2.24.0",
+    "mysql": "",
+    "path": ""
+  }
+}

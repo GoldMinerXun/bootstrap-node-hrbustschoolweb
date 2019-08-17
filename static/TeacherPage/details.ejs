@@ -1,0 +1,50 @@
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>老师主页</title>
+    <script src="../../jquery-2.1.0.js"></script>
+    <script src="../../tools/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../../tools/bootstrap-3.3.7-dist/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-inverse">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class=""><a href="/teacher">学生管理</a></li>
+                        <li class="active"><a href="/teacher/appoint">对局预约信息</a></li>
+                        <li class=""><a href="/teacher/publish">对局预约信息发布</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <p class="navbar-text">欢迎 <%= teacherName.USER_NAME %> 老师</p>
+                        </li>
+                        <li><a href="/?exit=exit">注销</a></li>
+                        <li><a href="/">主页</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+    <div class="container">
+        <div class="page-header">
+            <h1 style="text-align:center;">已经预约<<%= comname.iteam %>>的学生</h1>
+        </div>
+        <div class="list-group" style="margin-top:-20px">
+            <ul class="list-group">
+                <% studentlist.forEach(function(e){ %>
+                <li class="list-group-item"> <%= e.user_name %> </li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
